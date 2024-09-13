@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character set and title -->
+    <meta charset="UTF-8">
+    <title>FUORICampo - Player Details</title>
+
+    <!-- Include external JavaScript files -->
+    <script src="javascripts/player_page.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- Include external stylesheets -->
+    <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="stylesheets/navbar.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link rel="stylesheet" href="stylesheets/player_page.css">
+
+    <!-- Include JavaScript file with defer attribute -->
+    <script src="./javascripts/navbar_footer.js" defer></script>
+</head>
+<body onload="init(); loadNav(); loadFooter()">
+
+<!-- Navigation bar -->
+<nav class="nav" id="navbar-container">
+</nav>
+
+<!-- Player header section -->
+<div class="player">
+    <div class="NameIcon">
+        <img id="playerImage" src="" alt="player Image" class="teamImage">
+        <h1 id="playerName"></h1>
+    </div>
+
+    <div class="infoDiv">
+        <h1 id="playerPosition">Informations</h1>
+    </div>
+
+    <!-- Player information section -->
+    <div class="playerInfo" id="playerInfo">
+        <div class="infoRow">
+            <div class="infoContainer">
+                <div class="flagState">
+                    <img id="flag" src="" alt="">
+                    <h2 id="State"></h2>
+                </div>
+            </div>
+            <div class="infoContainer">
+                <div class="playerTeam">
+                    <img id="teamImage" src="" alt="team Image" class="teamImage">
+                    <h2 id="teamName"></h2>
+                </div>
+            </div>
+            <div class="infoContainer">
+                <div class="subRole">
+                    <h1 id="subRole"></h1>
+                </div>
+            </div>
+        </div>
+        <div class="infoRow">
+            <div class="infoContainer">
+                <div class="generalInfo">
+                    <h3>Age</h3>
+                    <h2 id="age"></h2>
+                </div>
+            </div>
+            <div class="infoContainer">
+                <div class="generalInfo">
+                    <h3>Height</h3>
+                    <h2 id="height"></h2>
+                </div>
+            </div>
+            <div class="infoContainer">
+                <div class="generalInfo">
+                    <h3>Best Foot</h3>
+                    <h2 id="foot"></h2>
+                </div>
+            </div>
+        </div>
+        <div class="infoRow">
+            <div class="infoContainer">
+                <div class="generalInfo">
+                    <h3>Current Value</h3>
+                    <h2 id="currentValue"></h2>
+                </div>
+            </div>
+            <div class="infoContainer">
+                <div class="generalInfo">
+                    <h3>Max Value</h3>
+                    <h2 id="highestValue"></h2>
+                </div>
+            </div>
+            <div class="infoContainer">
+                <div class="generalInfo">
+                    <h3>Agent Name</h3>
+                    <h2 id="agentName"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="stats">
+    <div class="infoDiv">
+        <h1 id="statsDiv">Stats</h1>
+    </div>
+
+    <!-- Player season statistics section, initially hidden -->
+    <div class="playerSeason" id="playerSeason">
+        <!-- Dropdown for selecting season, initially hidden -->
+        <label for="seasonSelect"></label><select id="seasonSelect"></select>
+
+        <div class="infoRow">
+            <div class="infoContainer">
+                <div class="totalAssists">
+                    <h3>Total Assists</h3>
+                    <h2 id="assist"></h2>
+                </div>
+            </div>
+            <div class="infoContainer">
+                <div class="totalGoals">
+                    <h3>Total Goals</h3>
+                    <h2 id="goal"></h2>
+                </div>
+            </div>
+            <div class="infoContainer">
+                <div class="minutesPlayed">
+                    <h3>Minutes Played</h3>
+                    <h2 id="minutes"></h2>
+                </div>
+            </div>
+        </div>
+        <div class="infoRow">
+            <div class="infoContainer">
+                <div class="redCards">
+                    <h3>Red Cards</h3>
+                    <h2 id="redCards"></h2>
+                </div>
+            </div>
+            <div class="infoContainer">
+                <div class="yellowCards">
+                    <h4>Yellow Card</h4>
+                    <h2 id="yellowCards"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading overlay -->
+<div id="loadingOverlay" style="display: none;">
+    <div id="loadingIcon"></div>
+</div>
+
+<!-- Placeholder for additional data -->
+<div id="data"></div>
+
+
+<!-- Footer -->
+<footer id="footer-container">
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Setting the charset -->
+    <meta charset="UTF-8">
+
+    <!-- Setting the title of the page -->
+    <title>FUORICampo - Players</title>
+
+    <!-- Linking to external JavaScript library -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- Linking to external CSS libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+
+    <!-- Linking to local CSS stylesheets -->
+    <link rel="stylesheet" href="stylesheets/navbar.css">
+    <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="stylesheets/players.css">
+
+    <!-- Linking to local JavaScript files -->
+    <script src="./javascripts/navbar_footer.js" defer></script>
+    <script src="javascripts/players.js" defer></script>
+</head>
+
+<body onload="init(); loadNav(); loadFooter()">
+
+<!-- Navigation bar -->
+<nav class="nav" id="navbar-container">
+</nav>
+
+<!-- Search bar for players -->
+<div class="playerSearch">
+    <label for="searchBar"></label><input type="text" id="searchBar" placeholder="Search player...">
+</div>
+
+<!-- Container where players will be displayed -->
+<div class="resultContainer">
+    <div class="playersContainer">
+        <!-- Players will be rendered here -->
+    </div>
+    <div class="containerPrevNext">
+        <button type="button" id="prevButton"><</button>
+        <div class="letterDiv" id = "currentLetterDisplay"></div>
+        <button type="button" id="nextButton">></button>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer-container">
+</footer>
+</body>
+</html>

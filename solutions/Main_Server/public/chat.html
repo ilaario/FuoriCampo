@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <!-- Setting the charset and the title of the page -->
+    <meta charset="UTF-8">
+    <title>FUORICampo - Chat Page</title>
+
+    <!-- Linking to CSS stylesheets -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/chat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="stylesheets/navbar.css">
+    <link rel="stylesheet" href="stylesheets/footer.css">
+
+    <!-- Linking to JavaScript files and external libraries -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="javascripts/chat.js"></script>
+    <script src="javascripts/navbar_footer.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body onload="init(); loadNav(); loadFooter()">
+<!-- Navigation bar -->
+<nav class="nav" id="navbar-container">
+</nav>
+
+<!-- Side menu for team search -->
+<div id="sideMenu" class="side-menu">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <input type="text" id="searchSquadre" placeholder="Search team...">
+    <!-- List of teams -->
+</div>
+
+<!-- Main content of the page -->
+<div id="main">
+    <button id="openSideMenu">&#8594;</button>
+    <p id="welcome"></p>
+    <input type="text" id="nome" name="nome" placeholder="Enter your Name">
+    <button id="join">Enter the General Chat</button>
+    <input type="text" id="room" readonly style="display: none;">
+
+    <!-- Container for chat messages -->
+    <div id="chatContainer">
+        <div id="messageList">
+        </div>
+    </div>
+
+    <!-- Container for sending messages -->
+    <div id="sendMessageContainer">
+        <input type="text" id="messageText" placeholder="Write a Message...">
+        <button id="sendMessage">Send</button>
+        <button id="leave">Exit the chat</button>
+    </div>
+</div>
+
+<!-- Page footer -->
+<footer id="footer-container">
+</footer>
+
+</body>
+</html>

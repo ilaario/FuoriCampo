@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <!-- Meta tags for character set, title, and viewport settings -->
+    <meta charset="UTF-8">
+    <title>FUORICampo - Games Details</title>
+
+    <!-- Include external libraries and stylesheets -->
+    <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="stylesheets/navbar.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+
+    <!-- Include JavaScript files -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./javascripts/navbar_footer.js" defer></script>
+    <link rel="stylesheet" href="stylesheets/game_page.css">
+    <script src="javascripts/game_page.js" defer></script>
+</head>
+<body onload="init(); loadNav();  loadFooter()">
+
+<!-- Navigation bar -->
+<nav class="nav" id="navbar-container">
+</nav>
+
+<!-- Loading overlay -->
+<div id="loadingOverlay" style="display: none;">
+    <div class="containerLoading">
+        <div id="loadingIcon"></div>
+    </div>
+</div>
+
+<!-- Match header section -->
+<div class="match-header">
+    <div class="containerMatchHeader">
+        <div class="team">
+            <img src="" alt="Logo Casa" id="homeIcon">
+            <h2 id="homeClub"></h2>
+        </div>
+        <div class="match-info">
+            <h4 id="season"></h4>
+            <h5 id="matchday"></h5>
+            <div class="result">
+                <h1 id="resultHome"></h1>
+                <h3>:</h3>
+                <h1 id="resultAway"></h1>
+            </div>
+            <p id="date"></p>
+            <p id="stadium"></p>
+        </div>
+        <div class="team">
+            <img src="" alt="Logo Ospiti" id="awayIcon">
+            <h2 id="awayClub"></h2>
+        </div>
+    </div>
+</div>
+
+<div class="matchInfo" id="matchInfo">
+    <h3 class="informationTitles">Informations</h3>
+    <div class="gameInfoRow">
+        <div class="gameInfoElement">
+            <h5>Competition Type</h5>
+            <p id="competitionType"></p>
+        </div>
+        <div class="gameInfoElement">
+            <h5>Referee</h5>
+            <p id="referee"></p>
+        </div>
+        <div class="gameInfoElement">
+            <div class="manager">
+                <div class="homeManager">
+                    <h5>Home manager</h5>
+                    <p id="homeManager"></p>
+                </div>
+                <div class="awayManager">
+                    <h5>Away manager</h5>
+                    <p id="awayManager"></p>
+                </div>
+            </div>
+        </div>
+        <div class="gameInfoElement">
+            <div class="manager">
+                <div class="homeManager">
+                    <h5>Home formation</h5>
+                    <p id="homeNumericFormation"></p>
+                </div>
+                <div class="awayManager">
+                    <h5>Away formation</h5>
+                    <p id="awayNumericFormation"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Timeline container -->
+<div class="timeline-container" id="timeline-container">
+    <!-- Timeline events managed by JavaScript -->
+</div>
+
+<!-- Container for additional information and formations -->
+<div class="containerInfo" id="containerInfo">
+    <div class="formation">
+        <div class="formationTitle" id="formationTitle">
+            <!-- Formation titles managed by JavaScript -->
+        </div>
+        <div class="formationContainer" id="formationContainerHome">
+            <div class="formationPlayers" id="homeFormation">
+                <!-- Home team formation managed by JavaScript -->
+            </div>
+        </div>
+        <div class="formationContainer" id="formationContainerAway" style="display: none">
+            <div class="formationPlayers" id="awayFormation">
+                <!-- Away team formation managed by JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer-container">
+</footer>
+
+</body>
+</html>

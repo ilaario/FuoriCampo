@@ -1,0 +1,228 @@
+body {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9rem;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #020887;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect for rows */
+tr:hover {
+    background-color: #ddd;
+}
+
+.select-div {
+    background-color: #F9F9F9;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+/* CSS PER I SELECT */
+/* Stile del contenitore che tiene i select e l'input date */
+.select-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Spazio tra gli elementi */
+}
+
+@media (max-width: 900px) {
+    .select-container{
+        flex-direction: column;
+        height: auto;
+    }
+}
+
+select, input[type="date"] {
+    padding: 20px 0 20px 0; /* Padding interno per i select e l'input */
+    border-radius: 5px; /* Angoli arrotondati */
+    border: 2px solid #ffffff; /* Bordo più spesso e verde scuro */
+    font-size: 16px; /* Dimensione del testo */
+    text-align: center;
+    background-color: #ffffff; /* Sfondo bianco per maggiore contrasto */
+    color: #000000; /* Testo nero per leggibilità */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+select:focus, input[type="date"]:focus {
+    border-color: #f1f1f1; /* Colore del bordo più scuro quando l'elemento è in focus */
+    background: #f1f1f1;
+}
+
+select:disabled, input[type="date"]:disabled {
+    background-color: #f1f1f1; /* Sfondo grigio chiaro per gli elementi disabilitati */
+    color: #f1f1f1; /* Testo grigio scuro per gli elementi disabilitati */
+}
+
+/* BOTTONE AAAA */
+#queryJoin {
+    background-color: #020887; /* Verde */
+    border: none;
+    color: white;
+    padding: 23px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px; /* Angoli arrotondati */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+#queryJoin:hover {
+    background-color: #334195; /* Verde scuro */
+}
+
+.matchContainer{
+    background-color: #F9F9F9;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    max-width: 1000px;
+    margin: 40px auto;
+    margin-top: 10px;
+    height: auto;
+    min-height: 20vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.match{
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    cursor: pointer;
+    padding: 20px 0 20px 0;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.5s ease, transform 0.5s ease;
+}
+
+.match:hover{
+    background-color: #f1f1f1;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
+    .firstTeam{
+        background-color: #f1f1f1;
+    }
+    .secondTeam{
+        background-color: #f1f1f1;
+    }
+    .result{
+        background-color: #f1f1f1;
+    }
+}
+
+.firstTeam{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+}
+
+
+.secondTeam{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    width: 100%;
+    background-color: transparent;
+}
+
+.result{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    height: 50%;
+    background-color: transparent;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+.FirstTeamName, .SecondTeamName{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #020887 #f2f2f2;
+}
+
+.SecondTeamName{
+    justify-content: flex-end;
+    text-align: right;
+}
+
+
+.FirstTeamName::-webkit-scrollbar, .SecondTeamName::-webkit-scrollbar {
+    width: 12px; /* Adjust width for vertical scrollbar */
+
+}
+
+.FirstTeamName::-webkit-scrollbar-track, .SecondTeamName::-webkit-scrollbar-track{
+    background: #f2f2f2; /* Color of the track */
+}
+
+
+.FirstTeamName::-webkit-scrollbar-thumb, .SecondTeamName::-webkit-scrollbar-thumb{
+    background-color: #020887;
+}
+
+.teamLogo{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.teamLogo img{
+    width: 30px;
+    height: auto;
+    margin: 0 10px;
+}

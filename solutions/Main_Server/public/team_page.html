@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include external stylesheets -->
+    <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="stylesheets/navbar.css" />
+    <link rel="stylesheet" href="stylesheets/team_page.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+
+    <!-- Include external JavaScript files -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./javascripts/navbar_footer.js" defer></script>
+    <script src="./javascripts/team_page.js" defer></script>
+
+    <!-- Meta tags for character set and title -->
+    <meta charset="UTF-8">
+    <title>FUORICampo - Teams Details</title>
+</head>
+<body onload="init(); loadNav(); loadFooter()">
+
+<!-- Navigation bar -->
+<nav class="nav" id="navbar-container">
+</nav>
+
+<!-- Team header section -->
+<div class="teamHeader">
+    <div class="NameIcon">
+        <img id="teamImage" src="" alt="Team Image" class="teamImage">
+        <h1 id="teamName"></h1>
+    </div>
+
+    <div class="infoName">
+        <h1>Team Information</h1>
+    </div>
+
+    <!-- Container for displaying team info, initially hidden -->
+    <div class="infoPageContainer" id="teamInfo">
+        <div class="infoCellsContainer">
+            <!-- Team information will be rendered here -->
+        </div>
+    </div>
+
+    <!-- Container for displaying team players -->
+    <div class="teamPageContainer" id="teamPlayers">
+        <!-- Players will be rendered here -->
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer id="footer-container">
+</footer>
+
+</body>
+</html>

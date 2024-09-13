@@ -1,0 +1,2656 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.0.0",
+    "title": "IUM-TWEB Project 2023-2024 Query Documentation",
+    "description": "This is the API documentation for the TWEB project for the years 2023-2024. The project is a football site that retrieves data from two servers, one running Express and the other running SpringBoot. Users can make queries to either of these servers or to the server running on port 3000, which contains all the routes for calls to the two servers."
+  },
+  "paths": {
+    "/getGameEventsByGameId": {
+      "get": {
+        "summary": "Get game events by game ID",
+        "description": "Returns a list of game events for a given game_id. This endpoint is available only on the specified servers.",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "game_id",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The ID of the game for which to get events"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of game events",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "player_assist_id": {
+                        "type": "integer",
+                        "nullable": true
+                      },
+                      "_id": {
+                        "type": "string"
+                      },
+                      "game_event_id": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "game_id": {
+                        "type": "integer"
+                      },
+                      "minute": {
+                        "type": "integer"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "club_id": {
+                        "type": "integer"
+                      },
+                      "player_id": {
+                        "type": "integer"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "player_in_id": {
+                        "type": "integer"
+                      },
+                      "nome_player_id": {
+                        "type": "string"
+                      },
+                      "nome_player_in_id": {
+                        "type": "string"
+                      },
+                      "nome_player_assist_id": {
+                        "type": "string",
+                        "nullable": true
+                      }
+                    }, "example": {
+                      "player_assist_id": null,
+                      "_id": "65e99ede58797868f77e387b",
+                      "game_event_id": "7dca592c3e9ef6d907ecd6f90a1ff1ae",
+                      "date": "2012-08-25T00:00:00.000Z",
+                      "game_id": 2222597,
+                      "minute": 20,
+                      "type": "Substitutions",
+                      "club_id": 232,
+                      "player_id": 45593,
+                      "description": ", Injury",
+                      "player_in_id": 120630,
+                      "nome_player_id": "Welliton",
+                      "nome_player_in_id": "Emmanuel Emenike",
+                      "nome_player_assist_id": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid game ID supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Game not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error retrieving game events",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Single Match Page"
+        ]
+      }
+    },
+    "/getGameById": {
+      "get": {
+        "summary": "Get game by ID",
+        "description": "Retrieve details of a game by its ID.",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "game_id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the game to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Game details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the game"
+                    },
+                    "game_id": {
+                      "type": "integer",
+                      "description": "Game ID"
+                    },
+                    "competition_id": {
+                      "type": "string",
+                      "description": "Competition ID"
+                    },
+                    "season": {
+                      "type": "integer",
+                      "description": "Season year"
+                    },
+                    "round": {
+                      "type": "string",
+                      "description": "Round of the competition"
+                    },
+                    "date": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Date of the game"
+                    },
+                    "home_club_id": {
+                      "type": "integer",
+                      "description": "ID of the home club"
+                    },
+                    "away_club_id": {
+                      "type": "integer",
+                      "description": "ID of the away club"
+                    },
+                    "home_club_goals": {
+                      "type": "integer",
+                      "description": "Goals scored by the home club"
+                    },
+                    "away_club_goals": {
+                      "type": "integer",
+                      "description": "Goals scored by the away club"
+                    },
+                    "home_club_position": {
+                      "type": "integer",
+                      "description": "Position of the home club in the league"
+                    },
+                    "away_club_position": {
+                      "type": "integer",
+                      "description": "Position of the away club in the league"
+                    },
+                    "home_club_manager_name": {
+                      "type": "string",
+                      "description": "Name of the home club manager"
+                    },
+                    "away_club_manager_name": {
+                      "type": "string",
+                      "description": "Name of the away club manager"
+                    },
+                    "stadium": {
+                      "type": "string",
+                      "description": "Stadium where the game was played"
+                    },
+                    "attendance": {
+                      "type": "integer",
+                      "description": "Number of attendees"
+                    },
+                    "referee": {
+                      "type": "string",
+                      "description": "Name of the referee"
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "URL to the game details"
+                    },
+                    "home_club_name": {
+                      "type": "string",
+                      "description": "Name of the home club"
+                    },
+                    "away_club_name": {
+                      "type": "string",
+                      "description": "Name of the away club"
+                    },
+                    "aggregate": {
+                      "type": "string",
+                      "description": "Aggregate score"
+                    },
+                    "competition_type": {
+                      "type": "string",
+                      "description": "Type of competition"
+                    }
+                  },
+                  "example": {
+                    "_id": "65e99f1e58797868f78a32bc",
+                    "game_id": 2222597,
+                    "competition_id": "RU1",
+                    "season": 2012,
+                    "round": "6. Matchday",
+                    "date": "2012-08-25T00:00:00.000Z",
+                    "home_club_id": 3725,
+                    "away_club_id": 232,
+                    "home_club_goals": 2,
+                    "away_club_goals": 1,
+                    "home_club_position": 2,
+                    "away_club_position": 5,
+                    "home_club_manager_name": "Stanislav Cherchesov",
+                    "away_club_manager_name": "Unai Emery",
+                    "stadium": "Akhmat-Arena",
+                    "attendance": 21700,
+                    "referee": "Vladislav Bezborodov",
+                    "url": "https://www.transfermarkt.co.uk/terek-grozny_spartak-moscow/index/spielbericht/2222597",
+                    "home_club_name": "RFK Akhmat Grozny",
+                    "away_club_name": "FK Spartak Moskva",
+                    "aggregate": "2:1",
+                    "competition_type": "domestic_league"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid game ID supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Game not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Single Match Page"
+        ]
+      }
+    },
+    "/getLineUps": {
+      "get": {
+        "summary": "Retrieve lineups by game ID and club ID",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "parameters": [
+          {
+            "name": "game_id",
+            "in": "query",
+            "required": false,
+            "description": "ID of the game",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "club_id",
+            "in": "query",
+            "required": false,
+            "description": "ID of the club",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "lineups": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": { "type": "string" },
+                          "game_lineups_id": { "type": "string" },
+                          "game_id": { "type": "integer" },
+                          "club_id": { "type": "integer" },
+                          "type": { "type": "string" },
+                          "number": { "type": "integer" },
+                          "player_id": { "type": "integer" },
+                          "player_name": { "type": "string" },
+                          "team_captain": { "type": "integer" },
+                          "position": { "type": "string" }
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "lineups": [
+                      {
+                        "_id": "65e99f0d58797868f78863d7",
+                        "game_lineups_id": "c1301b3ae0c719588ae8732e193b9488",
+                        "game_id": 4087929,
+                        "club_id": 350,
+                        "type": "starting_lineup",
+                        "number": 18,
+                        "player_id": 61697,
+                        "player_name": "Wes Foderingham",
+                        "team_captain": 0,
+                        "position": "Goalkeeper"
+                      },
+                      {
+                        "_id": "65e99f0d58797868f78863ce",
+                        "game_lineups_id": "e244ca9cfe663d38478df6be09f8d5d7",
+                        "game_id": 4087929,
+                        "club_id": 350,
+                        "type": "starting_lineup",
+                        "number": 19,
+                        "player_id": 128909,
+                        "player_name": "Jack Robinson",
+                        "team_captain": 0,
+                        "position": "Centre-Back"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, missing required parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No lineups found for the given game_id and club_id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error or no response from the server",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Single Match Page"]
+      }
+    },
+
+    "/allCompetitions": {
+      "get": {
+        "summary": "Get all competitions",
+        "description": "Retrieve a list of all competitions with ID, name, and country.",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of competitions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "competitionId": {
+                        "type": "string",
+                        "description": "Competition ID"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Competition name"
+                      },
+                      "countryName": {
+                        "type": "string",
+                        "description": "Country name"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "competitionId": "CIT",
+                      "name": "italy-cup",
+                      "countryName": "Italy"
+                    },
+                    {
+                      "competitionId": "NLSC",
+                      "name": "johan-cruijff-schaal",
+                      "countryName": "Netherlands"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Competitions not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Competitions"
+        ]
+      }
+    },
+
+    "/clubs": {
+      "get": {
+        "summary": "Get list of clubs",
+        "description": "Returns a list of clubs.",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of clubs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "club_id": {
+                        "type": "integer",
+                        "description": "Club ID"
+                      },
+                      "club_name": {
+                        "type": "string",
+                        "description": "Club name"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "club_id": 89,
+                      "club_name": "1. FC Union Berlin"
+                    },
+                    {
+                      "club_id": 39,
+                      "club_name": "1. Fußball- und Sportverein Mainz 05"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Clubs not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error retrieving clubs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Clubs"
+        ]
+      }
+    },
+
+    "/queryPartite": {
+      "get": {
+        "summary": "Get matches by query parameters",
+        "description": "Returns a list of matches based on the provided query parameters. This endpoint is available only on the specified server.",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "season",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "description": "The season for which to get matches"
+          },
+          {
+            "in": "query",
+            "name": "competition_type",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "description": "The type of competition"
+          },
+          {
+            "in": "query",
+            "name": "competition_id",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "description": "The ID of the competition"
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": ""
+            },
+            "description": "The date for which to get matches"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of matches",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "game_id": {
+                        "type": "integer",
+                        "description": "Game ID"
+                      },
+                      "home_club_name": {
+                        "type": "string",
+                        "description": "Home club name"
+                      },
+                      "home_club_goals": {
+                        "type": "integer",
+                        "description": "Goals scored by the home club",
+                        "nullable": true
+                      },
+                      "away_club_goals": {
+                        "type": "integer",
+                        "description": "Goals scored by the away club",
+                        "nullable": true
+                      },
+                      "away_club_name": {
+                        "type": "string",
+                        "description": "Away club name"
+                      },
+                      "home_club_id": {
+                        "type": "integer",
+                        "description": "Home club ID"
+                      },
+                      "away_club_id": {
+                        "type": "integer",
+                        "description": "Away club ID"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "game_id": 3844736,
+                      "home_club_name": "Associazione Calcio Fiorentina",
+                      "home_club_goals": 3,
+                      "away_club_goals": 2,
+                      "away_club_name": "US Cremonese",
+                      "home_club_id": 430,
+                      "away_club_id": 2239
+                    },
+                    {
+                      "game_id": 3844743,
+                      "home_club_name": "U.S. Salernitana 1919 S.r.l.",
+                      "home_club_goals": null,
+                      "away_club_goals": 1,
+                      "away_club_name": "Associazione Sportiva Roma",
+                      "home_club_id": 380,
+                      "away_club_id": 12
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameters supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Matches not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Matches"
+        ]
+      }
+    },
+    "/championships": {
+      "get": {
+        "summary": "Get distinct competition types",
+        "description": "Returns a list of distinct competition types. This endpoint is available only on the specified server.",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of distinct competition types",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Distinct competition type"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No types found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "No types found"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Bad request"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Matches"
+        ]
+      }
+    },
+    "/competitions": {
+      "get": {
+        "summary": "Get competitions by type",
+        "description": "Returns a list of competitions for a given type. This endpoint is available only on the specified server.",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The type of competition"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of competitions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "competitionId": {
+                        "type": "string",
+                        "description": "Competition ID"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Name of the competition"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No competitions found for this type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "No competitions found for this type"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Bad request"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Matches"
+        ]
+      }
+    },
+    "/selectSeasons": {
+      "get": {
+        "summary": "Get distinct seasons",
+        "description": "Returns a list of distinct seasons. This endpoint is available only on the specified server.",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of distinct seasons",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "description": "Distinct season"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Seasons not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Matches"
+        ]
+      }
+    },
+
+    "/gamesITByDate": {
+      "get": {
+        "summary": "Get games by date",
+        "description": "Returns the last 10 games played on Serie A",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of games by date",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "game_id": {
+                        "type": "integer",
+                        "description": "Game ID"
+                      },
+                      "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Date of the game"
+                      },
+                      "season": {
+                        "type": "integer",
+                        "description": "Season"
+                      },
+                      "home_club_name": {
+                        "type": "string",
+                        "description": "Home club name"
+                      },
+                      "away_club_name": {
+                        "type": "string",
+                        "description": "Away club name"
+                      },
+                      "competition_type": {
+                        "type": "string",
+                        "description": "Type of competition"
+                      },
+                      "home_club_id": {
+                        "type": "integer",
+                        "description": "Home club ID"
+                      },
+                      "away_club_id": {
+                        "type": "integer",
+                        "description": "Away club ID"
+                      },
+                      "home_club_goals": {
+                        "type": "integer",
+                        "description": "Goals scored by the home club"
+                      },
+                      "away_club_goals": {
+                        "type": "integer",
+                        "description": "Goals scored by the away club"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "game_id": 4103600,
+                      "date": "2023-11-26T00:00:00.000Z",
+                      "season": 2023,
+                      "home_club_name": "Associazione Sportiva Roma",
+                      "away_club_name": "Udinese Calcio",
+                      "competition_type": "domestic_league",
+                      "home_club_id": 12,
+                      "away_club_id": 410,
+                      "home_club_goals": 3,
+                      "away_club_goals": 1
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Games not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Home"
+        ]
+      }
+    },
+    "/highestValuePlayers": {
+      "get": {
+        "summary": "Get the 8 most highest value players",
+        "description": "Returns a list of the highest value players. This endpoint is available only on the specified server.",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of highest value players",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "playerId": {
+                        "type": "integer",
+                        "description": "Player ID"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Player name"
+                      },
+                      "imageUrl": {
+                        "type": "string",
+                        "description": "URL to the player's image"
+                      },
+                      "marketValueInEur": {
+                        "type": "integer",
+                        "description": "Market value in EUR"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "playerId": 123,
+                      "name": "Lionel Messi",
+                      "imageUrl": "https://example.com/messi.jpg",
+                      "marketValueInEur": 100000000
+                    },
+                    {
+                      "playerId": 456,
+                      "name": "Cristiano Ronaldo",
+                      "imageUrl": "https://example.com/ronaldo.jpg",
+                      "marketValueInEur": 95000000
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No top players found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Error message"
+                },
+                "example": "No top players found"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Error message"
+                },
+                "example": "Bad request"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Error message"
+                },
+                "example": "Internal server error"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Home"
+        ]
+      }
+    },
+    "/bestTeams": {
+      "get": {
+        "summary": "Get top 8 teams by net transfer record",
+        "description": "Returns a list of the top 8 teams based on net transfer record. This endpoint is available only on the specified server.",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of top 6 teams",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "Team name"
+                      },
+                      "clubId": {
+                        "type": "integer",
+                        "description": "Club ID"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "name": "Juventus",
+                      "clubId": 1
+                    },
+                    {
+                      "name": "Inter Milan",
+                      "clubId": 2
+                    },
+                    {
+                      "name": "AC Milan",
+                      "clubId": 3
+                    },
+                    {
+                      "name": "AS Roma",
+                      "clubId": 4
+                    },
+                    {
+                      "name": "Napoli",
+                      "clubId": 5
+                    },
+                    {
+                      "name": "Lazio",
+                      "clubId": 6
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No clubs found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Error message"
+                },
+                "example": "No clubs found"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Error message"
+                },
+                "example": "Bad request"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Error message"
+                },
+                "example": "Internal server error"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Home"
+        ]
+      }
+    },
+
+    "/playerData": {
+      "get": {
+        "tags": ["Single Player Page"],
+        "summary": "Retrieve player data by player ID",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_id",
+            "in": "query",
+            "required": false,
+            "description": "ID of the player",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "playerId": { "type": "integer" },
+                      "firstName": { "type": "string" },
+                      "lastName": { "type": "string" },
+                      "name": { "type": "string" },
+                      "lastSeason": { "type": "integer" },
+                      "currentClubId": { "type": "integer" },
+                      "playerCode": { "type": "string" },
+                      "countryOfBirth": { "type": "string" },
+                      "cityOfBirth": { "type": "string" },
+                      "countryOfCitizenship": { "type": "string" },
+                      "dateOfBirth": { "type": "string", "format": "date-time" },
+                      "subPosition": { "type": "string" },
+                      "position": { "type": "string" },
+                      "foot": { "type": "string", "nullable": true },
+                      "heightInCm": { "type": "integer", "nullable": true },
+                      "marketValueInEur": { "type": "integer", "nullable": true },
+                      "highestMarketValueInEur": { "type": "integer" },
+                      "contractExpirationDate": { "type": "string", "format": "date-time", "nullable": true },
+                      "agentName": { "type": "string", "nullable": true },
+                      "imageUrl": { "type": "string" },
+                      "url": { "type": "string" },
+                      "currentClubDomesticCompetitionId": { "type": "string" },
+                      "currentClubName": { "type": "string" }
+                    }
+                  },
+                  "example": [
+                    {
+                      "playerId": 2048,
+                      "firstName": "Philipp",
+                      "lastName": "Haastrup",
+                      "name": "Philipp Haastrup",
+                      "lastSeason": 2012,
+                      "currentClubId": 403,
+                      "playerCode": "philipp-haastrup",
+                      "countryOfBirth": "Germany",
+                      "cityOfBirth": "Münster",
+                      "countryOfCitizenship": "Germany",
+                      "dateOfBirth": "1982-03-04T23:00:00.000+00:00",
+                      "subPosition": "Centre-Back",
+                      "position": "Defender",
+                      "foot": null,
+                      "heightInCm": null,
+                      "marketValueInEur": null,
+                      "highestMarketValueInEur": 450000,
+                      "contractExpirationDate": null,
+                      "agentName": null,
+                      "imageUrl": "https://img.a.transfermarkt.technology/portrait/header/s_2048_222_2013_08_26_1.jpg?lm=1",
+                      "url": "https://www.transfermarkt.co.uk/philipp-haastrup/profil/spieler/2048",
+                      "currentClubDomesticCompetitionId": "NL1",
+                      "currentClubName": "Willem II Tilburg"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, missing required parameters or invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No data found for the given player ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error or no response from the server",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/playerSeason": {
+      "get": {
+        "tags": ["Single Player Page"],
+        "summary": "Retrieve player season stats by player ID",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_id",
+            "in": "query",
+            "required": false,
+            "description": "ID of the player",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": { "type": "integer" },
+                      "totalMinutesPlayed": { "type": "integer" },
+                      "totalGoals": { "type": "integer" },
+                      "totalAssists": { "type": "integer" },
+                      "totalRedCards": { "type": "integer" },
+                      "totalYellowCards": { "type": "integer" }
+                    }
+                  },
+                  "example": [
+                    {
+                      "_id": 2012,
+                      "totalMinutesPlayed": 2746,
+                      "totalGoals": 1,
+                      "totalAssists": 0,
+                      "totalRedCards": 0,
+                      "totalYellowCards": 7
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, missing required parameters or invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No stats found for the given player ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error or no response from the server",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/teamData": {
+      "get": {
+        "tags": ["Team Page"],
+        "summary": "Retrieve team data by team ID",
+        "parameters": [
+          {
+            "name": "club_id",
+            "in": "query",
+            "required": false,
+            "description": "ID of the team",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "clubId": { "type": "integer" },
+                      "clubCode": { "type": "string" },
+                      "name": { "type": "string" },
+                      "domesticCompetitionId": { "type": "string" },
+                      "totalMarketValue": { "type": "integer", "nullable": true },
+                      "squadSize": { "type": "integer" },
+                      "averageAge": { "type": "number" },
+                      "foreignersNumber": { "type": "integer" },
+                      "foreignersPercentage": { "type": "number" },
+                      "nationalTeamPlayers": { "type": "integer" },
+                      "stadiumName": { "type": "string" },
+                      "stadiumSeats": { "type": "integer" },
+                      "netTransferRecord": { "type": "string" },
+                      "coachName": { "type": "string", "nullable": true },
+                      "lastSeason": { "type": "string" },
+                      "url": { "type": "string" }
+                    },
+                    "example": [
+                      {
+                        "clubId": 148,
+                        "clubCode": "tottenham-hotspur",
+                        "name": "Tottenham Hotspur Football Club",
+                        "domesticCompetitionId": "GB1",
+                        "totalMarketValue": null,
+                        "squadSize": 29,
+                        "averageAge": 26.2,
+                        "foreignersNumber": 21,
+                        "foreignersPercentage": 72.4,
+                        "nationalTeamPlayers": 22,
+                        "stadiumName": "Tottenham Hotspur Stadium",
+                        "stadiumSeats": 62062,
+                        "netTransferRecord": "€-130.40m",
+                        "coachName": null,
+                        "lastSeason": "2023",
+                        "url": "https://www.transfermarkt.co.uk/tottenham-hotspur/startseite/verein/148"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, missing required parameters or invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No data found for the given team ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error or no response from the server",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ]
+      }
+    },
+    "/teamPlayers": {
+      "get": {
+        "tags": ["Team Page"],
+        "summary": "Retrieve team players by team ID",
+        "parameters": [
+          {
+            "name": "current_club_id",
+            "in": "query",
+            "required": false,
+            "description": "ID of the team",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "player_id": { "type": "integer" },
+                      "player_name": { "type": "string" },
+                      "position": { "type": "string" },
+                      "image_url": { "type": "string" }
+                    }
+                  },
+                  "example": [
+                    {
+                      "player_id": 431755,
+                      "player_name": "Dejan Kulusevski",
+                      "position": "Attack",
+                      "image_url": "https://img.a.transfermarkt.technology/portrait/header/431755-1684943454.jpg?lm=1"
+                    },
+                    {
+                      "player_id": 556385,
+                      "player_name": "Destiny Udogie",
+                      "position": "Defender",
+                      "image_url": "https://img.a.transfermarkt.technology/portrait/header/556385-1697208468.jpg?lm=1"
+                    },
+                    {
+                      "player_id": 859951,
+                      "player_name": "Ashley Phillips",
+                      "position": "Defender",
+                      "image_url": "https://img.a.transfermarkt.technology/portrait/header/859951-1666873624.jpg?lm=1"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, missing required parameters or invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No players found for the given team ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error or no response from the server",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ]
+      }
+    },
+
+    "/signup": {
+      "post": {
+        "tags": ["Login And SignUp"],
+        "summary": "Register a new user",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "description": "Username of the user",
+            "schema": {
+              "type": "string",
+              "example": "john_doe"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": true,
+            "description": "Password of the user",
+            "schema": {
+              "type": "string",
+              "example": "Password123!"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "description": "Email of the user",
+            "schema": {
+              "type": "string",
+              "example": "john_doe@example.com"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string"
+                        },
+                        "username": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "token": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "user": {
+                      "_id": "668578d3008ecf82f89e783f",
+                      "username": "swagger",
+                      "email": "swagger@gmail.com"
+                    },
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Njg1NzhkMzAwOGVjZjgyZjg5ZTc4M2YiLCJpYXQiOjE3MjAwMjMyNTF9.Axp--MePttkegEftkLZNUfwoSsiAXRaXsIPqQsmcfjc"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ]
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["Login And SignUp"],
+        "summary": "User login",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "description": "Email of the user",
+            "schema": {
+              "type": "string",
+              "example": "john_doe@example.com"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": true,
+            "description": "Password of the user",
+            "schema": {
+              "type": "string",
+              "example": "Password123!"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User logged in successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string"
+                        },
+                        "username": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "token": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "user": {
+                      "_id": "668578d3008ecf82f89e783f",
+                      "username": "swagger",
+                      "email": "swagger@gmail.com"
+                    },
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Njg1NzhkMzAwOGVjZjgyZjg5ZTc4M2YiLCJpYXQiOjE3MjAwMjMzNjR9.NnK9SCzrKgc5oviP1sdjJPNbT6k9wUh_oYm2c8TQyi8"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid login credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ]
+      }
+    },
+
+    "/teamStats": {
+      "get": {
+        "summary": "Get team stats by competition ID and season",
+        "description": "Returns team stats for a given competition ID and season. This endpoint is available only on the specified server.",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "competition_id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the competition"
+          },
+          {
+            "in": "query",
+            "name": "season",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The season for which to get team stats"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Team stats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "integer",
+                        "description": "Team ID"
+                      },
+                      "totalGoalsFor": {
+                        "type": "integer",
+                        "description": "Total goals scored by the team"
+                      },
+                      "totalGoalsAgainst": {
+                        "type": "integer",
+                        "description": "Total goals conceded by the team"
+                      },
+                      "totalWins": {
+                        "type": "integer",
+                        "description": "Total wins"
+                      },
+                      "totalDraws": {
+                        "type": "integer",
+                        "description": "Total draws"
+                      },
+                      "totalMatches": {
+                        "type": "integer",
+                        "description": "Total matches played"
+                      },
+                      "totalLosses": {
+                        "type": "integer",
+                        "description": "Total losses"
+                      },
+                      "totalPoints": {
+                        "type": "integer",
+                        "description": "Total points"
+                      },
+                      "goalDifference": {
+                        "type": "integer",
+                        "description": "Goal difference"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "_id": 46,
+                      "totalGoalsFor": 30,
+                      "totalGoalsAgainst": 7,
+                      "totalWins": 10,
+                      "totalDraws": 2,
+                      "totalMatches": 13,
+                      "totalLosses": 1,
+                      "totalPoints": 32,
+                      "goalDifference": 23
+                    },
+                    {
+                      "_id": 506,
+                      "totalGoalsFor": 20,
+                      "totalGoalsAgainst": 8,
+                      "totalWins": 9,
+                      "totalDraws": 3,
+                      "totalMatches": 13,
+                      "totalLosses": 1,
+                      "totalPoints": 30,
+                      "goalDifference": 12
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "competition_id and season are required"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No team stats found for this competition ID and season",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "No team stats found for this competition_id and season"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Single Competition Page"
+        ]
+      }
+    },
+    "/gamesByCompetitionAndSeason": {
+      "get": {
+        "summary": "Get games by competition ID and season",
+        "description": "Returns a list of games for a given competition ID and season. This endpoint is available only on the specified server.",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "competition_id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the competition"
+          },
+          {
+            "in": "query",
+            "name": "season",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The season for which to get games"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of games",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "integer",
+                        "description": "Document ID"
+                      },
+                      "matches": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "description": "Match ID"
+                            },
+                            "game_id": {
+                              "type": "integer",
+                              "description": "Game ID"
+                            },
+                            "competition_id": {
+                              "type": "string",
+                              "description": "Competition ID"
+                            },
+                            "season": {
+                              "type": "integer",
+                              "description": "Season"
+                            },
+                            "round": {
+                              "type": "string",
+                              "description": "Round of the match"
+                            },
+                            "date": {
+                              "type": "string",
+                              "format": "date-time",
+                              "description": "Date of the game"
+                            },
+                            "home_club_id": {
+                              "type": "integer",
+                              "description": "Home club ID"
+                            },
+                            "away_club_id": {
+                              "type": "integer",
+                              "description": "Away club ID"
+                            },
+                            "home_club_goals": {
+                              "type": "integer",
+                              "description": "Goals scored by the home club"
+                            },
+                            "away_club_goals": {
+                              "type": "integer",
+                              "description": "Goals scored by the away club"
+                            },
+                            "home_club_position": {
+                              "type": "integer",
+                              "description": "Position of the home club"
+                            },
+                            "away_club_position": {
+                              "type": "integer",
+                              "description": "Position of the away club"
+                            },
+                            "home_club_manager_name": {
+                              "type": "string",
+                              "description": "Manager of the home club"
+                            },
+                            "away_club_manager_name": {
+                              "type": "string",
+                              "description": "Manager of the away club"
+                            },
+                            "stadium": {
+                              "type": "string",
+                              "description": "Stadium where the game is played"
+                            },
+                            "attendance": {
+                              "type": "integer",
+                              "description": "Number of attendees"
+                            },
+                            "referee": {
+                              "type": "string",
+                              "description": "Referee of the match"
+                            },
+                            "url": {
+                              "type": "string",
+                              "description": "URL to the match report"
+                            },
+                            "home_club_name": {
+                              "type": "string",
+                              "description": "Name of the home club"
+                            },
+                            "away_club_name": {
+                              "type": "string",
+                              "description": "Name of the away club"
+                            },
+                            "aggregate": {
+                              "type": "string",
+                              "description": "Aggregate score"
+                            },
+                            "competition_type": {
+                              "type": "string",
+                              "description": "Type of competition"
+                            },
+                            "roundNumber": {
+                              "type": "integer",
+                              "description": "Round number"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "_id": 38,
+                      "matches": [
+                        {
+                          "_id": "65e99f1e58797868f78a3d62",
+                          "game_id": 3845106,
+                          "competition_id": "IT1",
+                          "season": 2022,
+                          "round": "38. Matchday",
+                          "date": "2023-06-04T00:00:00.000Z",
+                          "home_club_id": 800,
+                          "away_club_id": 2919,
+                          "home_club_goals": 5,
+                          "away_club_goals": 2,
+                          "home_club_position": 5,
+                          "away_club_position": 11,
+                          "home_club_manager_name": "Gian Piero Gasperini",
+                          "away_club_manager_name": "Raffaele Palladino",
+                          "stadium": "Gewiss Stadium",
+                          "attendance": 19389,
+                          "referee": "Marco Di Bello",
+                          "url": "https://www.transfermarkt.co.uk/atalanta-bc_ac-monza/index/spielbericht/3845106",
+                          "home_club_name": "Atalanta Bergamasca Calcio S.p.a.",
+                          "away_club_name": "Associazione Calcio Monza",
+                          "aggregate": "5:2",
+                          "competition_type": "domestic_league",
+                          "roundNumber": 38
+                        },
+                        {
+                          "_id": "65e99f1f58797868f78a5a4d",
+                          "game_id": 3845115,
+                          "competition_id": "IT1",
+                          "season": 2022,
+                          "round": "38. Matchday",
+                          "date": "2023-06-04T00:00:00.000Z",
+                          "home_club_id": 410,
+                          "away_club_id": 506,
+                          "home_club_goals": 0,
+                          "away_club_goals": 1,
+                          "home_club_position": 12,
+                          "away_club_position": 7,
+                          "home_club_manager_name": "Andrea Sottil",
+                          "away_club_manager_name": "Massimiliano Allegri",
+                          "stadium": "Dacia Arena",
+                          "attendance": 23266,
+                          "referee": "Marco Guida",
+                          "url": "https://www.transfermarkt.co.uk/udinese-calcio_juventus-fc/index/spielbericht/3845115",
+                          "home_club_name": "Udinese Calcio",
+                          "away_club_name": "Juventus Football Club",
+                          "aggregate": "0:1",
+                          "competition_type": "domestic_league",
+                          "roundNumber": 38
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "competition_id and season are required"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No matches found for this competition ID and season",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "No matches found for this competition_id and season"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Single Competition Page"
+        ]
+      }
+    },
+
+    "/players": {
+      "get": {
+        "summary": "Search all players",
+        "description": "Returns a list of players . This endpoint is available only on the specified server.",
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Server Express - Main"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of players",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "playerId": {
+                        "type": "integer",
+                        "description": "Player ID"
+                      },
+                      "subPosition": {
+                        "type": "string",
+                        "description": "Player sub-position"
+                      },
+                      "currentClubName": {
+                        "type": "string",
+                        "description": "Current club of the player"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Player name"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "playerId": 1,
+                      "subPosition": "Forward",
+                      "currentClubName": "FC Barcelona",
+                      "name": "Lionel Messi",
+                      "currentClubId": 3
+                    },
+                    {
+                      "playerId": 2,
+                      "subPosition": "Midfielder",
+                      "currentClubName": "Real Madrid",
+                      "name": "Luka Modric",
+                      "currentClubId": 1
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No players found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Error message"
+                },
+                "example": "No players found "
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Error message"
+                },
+                "example": "Bad request"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Error message"
+                },
+                "example": "Internal server error"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Players"
+        ]
+      }
+    }
+  }
+}

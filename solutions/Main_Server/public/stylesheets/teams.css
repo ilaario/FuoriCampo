@@ -1,0 +1,147 @@
+body{
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.squadSearch{
+    background-color: #F9F9F9;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.squadSearch input{
+    padding: 20px 0 20px 0; /* Padding interno per i select e l'input */
+    border-radius: 5px; /* Angoli arrotondati */
+    border: 2px solid #ffffff; /* Bordo più spesso e verde scuro */
+    font-size: 16px; /* Dimensione del testo */
+    text-align: center;
+    width: 1000px;
+    background-color: #ffffff; /* Sfondo bianco per maggiore contrasto */
+    color: #000000; /* Testo nero per leggibilità */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.squadSearch button{
+    position: absolute;
+    transform: translateX(120px);
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+}
+
+.resultContainer {
+    background-color: #F9F9F9;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.letterDiv {
+    padding: 0 30px 0 30px;
+}
+
+
+.squadContainer{
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .row .letter {
+        font-size: 25px; /* Riduci la dimensione del font per schermi più piccoli */
+        width: 15%; /* Aumenta la percentuale per mantenere la leggibilità */
+    }
+}
+
+.squad {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: center; /* Aggiunto per centrare orizzontalmente */
+    height: auto;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    cursor: pointer;
+    padding: 20px 0 20px 0;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.5s ease, transform 0.5s ease;
+}
+
+.squad span {
+    display: flex;
+    justify-content: center; /* Centra l'elemento span orizzontalmente */
+    align-items: center; /* Centra verticalmente */
+    width: 100%;
+    background-color: transparent;
+    margin-right: 55px;
+}
+
+.squad img {
+    width: auto;
+    height: 60px;
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    .squad {
+        flex: 1 0 50%;
+    }
+}
+
+@media (max-width: 600px) {
+    .squad {
+        flex: 1 0 100%;
+    }
+}
+
+.squad:hover {
+    background-color: #f2f2f2;
+}
+
+.containerPrevNext{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.containerPrevNext button{
+    width: 40px;
+    height: 40px;
+    background-color: #020887;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.containerPrevNext button:hover{
+    background-color: #334195;
+    font-size: 17px;
+}

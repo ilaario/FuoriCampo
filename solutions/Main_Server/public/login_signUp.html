@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character set, compatibility, and viewport settings -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Include external libraries and stylesheets -->
+    <link rel="stylesheet" href="stylesheets/navbar.css" />
+    <link rel="stylesheet" href="stylesheets/footer.css" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/login_signUp.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="javascripts/navbar_footer.js" defer></script>
+    <script src="javascripts/login_signUp.js"></script>
+
+    <title>FUORICampo - Log In / Sign Up</title>
+</head>
+
+<body onload="init(); loadNav(); loadFooter()">
+<!-- Navigation bar -->
+<nav class="nav" id="navbar-container">
+</nav>
+
+<!-- Login container -->
+<div id="LogInContainer" style="display: none" aria-describedby="login-desc" aria-hidden="true">
+    <!-- Screen reader only description for accessibility -->
+    <p id="login-desc" class="sr-only">Accedi al sito.</p>
+    <div class="main">
+        <div class="container">
+            <div class="form-container sign-in">
+                <form aria-labelledby="loginTitle">
+                    <!-- Login title -->
+                    <h1 id="loginTitle">Log In</h1>
+                    <!-- Social media login options -->
+                    <div class="social-icons" role="group" aria-label="Social media login options">
+                        <a href="#" class="icon" aria-label="Login with Google"><em class="fa-brands fa-google-plus-g"></em></a>
+                        <a href="#" class="icon" aria-label="Login with Facebook"><em class="fa-brands fa-facebook-f"></em></a>
+                        <a href="https://github.com/ilaario" class="icon" aria-label="Login with GitHub"><em class="fa-brands fa-github"></em></a>
+                        <a href="#" class="icon" aria-label="Login with LinkedIn"><em class="fa-brands fa-linkedin-in"></em></a>
+                    </div>
+                    <!-- Email input field -->
+                    <div class="input-container">
+                        <label for="loginEmail">Email</label>
+                        <div class="input-icon-wrapper">
+                            <em class="fa-solid fa-envelope icon" aria-hidden="true"></em>
+                            <input type="text" id="loginEmail" placeholder="Email" name="Email" required aria-required="true" aria-describedby="LoginEmailError" aria-invalid="true" autocomplete="email">
+                            <span class="error-message" id="LoginEmailError" role="alert">Invalid email address</span>
+                        </div>
+                    </div>
+                    <!-- Password input field -->
+                    <div class="input-container">
+                        <label for="loginPassword">Password</label>
+                        <div class="input-icon-wrapper">
+                            <em class="fa-solid fa-lock icon" aria-hidden="true"></em>
+                            <input type="password" id="loginPassword" placeholder="Password" aria-label="Password" required aria-required="true" name="password" aria-describedby="LoginPasswordError"  autocomplete="current-password">
+                            <span class="error-message" id="LoginPasswordError" role="alert">Password must be at least 4 characters</span>
+                        </div>
+                    </div>
+                    <!-- Forgot password link -->
+                    <a href="#" class="password-reset">Forgot password?</a>
+                    <!-- Login button -->
+                    <button type="submit" id="clickAccedi">LogIn</button>
+                    <!-- Responsive overlay for sign up option -->
+                    <div class="overlay-responsive">
+                        <p>Are you not registered?</p>
+                        <a id="SignUpResponsive">SignUp</a>
+                    </div>
+                </form>
+            </div>
+            <!-- Overlay container for welcome message -->
+            <div class="right-container">
+                <div class="overlay">
+                    <div class="overlay-right">
+                        <h1>Welcome Back!</h1>
+                        <p>Are you not registered?</p>
+                        <button type="button" class="ghost" id="SignUpButton">SIGNUP</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Signup container -->
+<div id="SignUpContainer" style="display: none" aria-describedby="signin_desc" aria-hidden="true">
+    <!-- Screen reader only description for accessibility -->
+    <p id="signin_desc" class="sr-only">Registrati al sito!</p>
+    <div class="main">
+        <div class="container">
+            <div class="form-container sign-up">
+                <form aria-labelledby="signupTitle">
+                    <!-- Signup title -->
+                    <h1 id="signupTitle">Sign Up</h1>
+                    <!-- Social media signup options -->
+                    <div class="social-icons" role="group" aria-label="Social media signup options">
+                        <a href="#" class="icon" aria-label="Signup with Google"><em class="fa-brands fa-google-plus-g"></em></a>
+                        <a href="#" class="icon" aria-label="Signup with Facebook"><em class="fa-brands fa-facebook-f"></em></a>
+                        <a href="#" class="icon" aria-label="Signup with GitHub"><em class="fa-brands fa-github"></em></a>
+                        <a href="#" class="icon" aria-label="Signup with LinkedIn"><em class="fa-brands fa-linkedin-in"></em></a>
+                    </div>
+                    <!-- Name input field -->
+                    <div class="input-container">
+                        <label for="signupName">Name</label>
+                        <div class="input-icon-wrapper">
+                            <em class="fa-solid fa-user icon" aria-hidden="true"></em>
+                            <input type="text" id="signupName" placeholder="Name" aria-label="Name" autocomplete="name" name="name" required aria-required="true">
+                        </div>
+                    </div>
+                    <!-- Email input field -->
+                    <div class="input-container">
+                        <label for="signupEmail">Email</label>
+                        <div class="input-icon-wrapper">
+                            <em class="fa-solid fa-envelope icon" aria-hidden="true"></em>
+                            <input type="text" id="signupEmail" placeholder="Email" aria-label="Email" autocomplete="email" required aria-required="true" name="Email">
+                            <span class="error-message" id="signupEmailError" role="alert">Invalid email address</span>
+                        </div>
+                    </div>
+                    <!-- Password input field -->
+                    <div class="input-container">
+                        <label for="signupPassword">Password</label>
+                        <div class="input-icon-wrapper">
+                            <em class="fa-solid fa-lock icon" aria-hidden="true"></em>
+                            <input type="password" id="signupPassword" placeholder="Password" aria-label="Password" required aria-required="true" name="password" autocomplete="current-password">
+                            <span class="error-message" id="signupPasswordError" role="alert">Password must be at least 4 characters</span>
+                        </div>
+                    </div>
+                    <!-- Signup button -->
+                    <button id="clickRegistrati" type="submit">SignUp</button>
+                    <!-- Responsive overlay for sign in option -->
+                    <div class="overlay-responsive">
+                        <p>Are you not registered?</p>
+                        <a id="SignInResponsive">SignIn</a>
+                    </div>
+                </form>
+            </div>
+            <!-- Overlay container for welcome message -->
+            <div class="right-container">
+                <div class="overlay">
+                    <div class="overlay-right">
+                        <h1>Welcome!</h1>
+                        <p>Do you already have an account?</p>
+                        <button type="button" id="SignInButton" class="ghost">LOGIN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page footer -->
+<footer id="footer-container">
+</footer>
+</body>
+</html>

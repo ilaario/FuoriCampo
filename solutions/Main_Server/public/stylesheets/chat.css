@@ -1,0 +1,258 @@
+body{
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#chatContainer, #sendMessageContainer {
+    padding: 10px;
+    width: 100%;
+    max-width: 600px;
+    background-color: rgba(248, 248, 248, 0.75);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+#sendMessageContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#chatContainer {
+    height: 600px;
+    margin-top: 10px;
+}
+
+#messageList {
+    list-style-type: none;
+    max-height: 440px;
+    overflow-y: auto;
+}
+
+#messageList li {
+    background-color: #ffffff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border-left: 4px solid #020887;
+}
+
+#join, #nome{
+    padding: 10px;
+    width: calc(100% - 40px); /* Adegua la larghezza in base al padding */
+    max-width: 300px; /* Imposta una larghezza massima per centrarli meglio */
+}
+
+#nome {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#join{
+    background-color: #020887;
+    margin-bottom: 1px; /* Riduci questo valore per ridurre la distanza tra i pulsanti */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px; /* Adegua la dimensione del testo se necessario */
+}
+
+#join:hover{
+    background-color: #334195;
+}
+
+
+input[type="text"] {
+    width: calc(100% - 20px); /* Corregge la larghezza in base al padding */
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#sendMessageContainer button {
+    background-color: #020887;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block; /* Permette ai bottoni di essere uno accanto all'altro */
+    margin-right: 10px; /* Aggiunge spazio tra i bottoni */
+}
+
+#messageList .leave-message {
+    background-color: #FF9393;
+    color: black; /* Cambia il colore del testo in bianco per una migliore leggibilità */
+}
+
+#messageList .expert-message {
+    background-color: #020887;
+    color: #ffffff;
+}
+
+#sendMessageContainer button:hover {
+    background-color: #334195;
+}
+
+#sendMessageContainer #leave {
+    background-color: #a94442;
+}
+
+#sendMessageContainer #leave:hover {
+    background-color: #901c1b;
+}
+
+/* Stile per la barra di scorrimento */
+#messageList::-webkit-scrollbar {
+    width: 7px; /* Larghezza della barra di scorrimento */
+}
+
+#messageList::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Colore di sfondo della traccia */
+}
+
+#messageList::-webkit-scrollbar-thumb {
+    background: #888; /* Colore di sfondo del pollice (la barra di scorrimento vera e propria) */
+}
+
+#messageList::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Colore di sfondo del pollice quando il mouse è sopra */
+}
+
+#welcome {
+    width: 100%; /* Occupa tutta la larghezza del contenitore genitore */
+    max-width: 600px; /* Assicurati che questa corrisponda alla larghezza del tuo contenitore della chat */
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px; /* Adegua la dimensione del testo se necessario */
+    font-weight: bold; /* Rende il testo grassetto */
+    color: #020887;
+    background-color: #fff;
+    user-select: none; /* Impedisce la selezione del testo */
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 120px auto 5px auto; /* Auto applica una marginatura automatica a sinistra e a destra, centrando l'elemento */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+    text-align: center;
+}
+
+/* PER IL MENU LATERALE */
+.side-menu {
+    height: 688px; /* Limita l'altezza al 100% della viewport */
+    width: 0;
+    position: absolute;
+    z-index: 1;
+    top: 82px;
+    left: 0;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    overflow-y: auto; /* Permette lo scroll quando necessario */
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.side-menu a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.side-menu .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#sideMenu #searchSquadre {
+    width: calc(100% - 40px); /* Adegua la larghezza in base al padding */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 20px auto; /* Centra l'elemento */
+    display: block; /* Rende l'elemento un blocco per permettere il centrato orizzontale */
+    font-size: 16px; /* Aumenta la dimensione del testo */
+    background-color: #f1f1f1; /* Cambia il colore di sfondo */
+    transition: all 0.3s ease; /* Aggiunge una transizione per tutti i cambiamenti di stile */
+}
+
+#sideMenu #searchSquadre:focus {
+    outline: none; /* Rimuove il contorno di default quando l'input è in focus */
+    border-color: #020887; /* Cambia il colore del bordo quando l'input è in focus */
+    box-shadow: 0 0 5px rgba(20, 99, 28, 0.5); /* Aggiunge un'ombra quando l'input è in focus */
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px 16px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+#openSideMenu {
+    position: absolute;
+    margin-top: 80px;
+    top: -2px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.squadra {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    color: black; /* Colore del testo */
+}
+
+.squadra-img {
+    width: 50px;
+    height: auto;
+}
+
+.squadra-nome {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.squadra:hover {
+    background-color: #f5f5f5; /* Cambia questo colore come preferisci */
+    cursor: pointer;
+}
+
+.side-menu::-webkit-scrollbar {
+    width: 10px; /* Larghezza della barra di scorrimento */
+}
+
+.side-menu::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.side-menu::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.side-menu::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

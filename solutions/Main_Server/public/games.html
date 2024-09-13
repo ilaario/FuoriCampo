@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include external JavaScript files -->
+    <script src="javascripts/games.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- Include external stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link rel="stylesheet" href="stylesheets/games.css">
+    <link rel="stylesheet" href="stylesheets/navbar.css">
+    <link rel="stylesheet" href="stylesheets/footer.css">
+
+    <!-- Include JavaScript file with defer attribute -->
+    <script src="./javascripts/navbar_footer.js" defer></script>
+    <!-- Meta tags for character set and title -->
+    <meta charset="UTF-8">
+    <title>FUORICampo - Games</title>
+</head>
+<body onload="init(); loadNav(); loadFooter()">
+
+<!-- Navigation bar -->
+<nav class="nav" id="navbar-container">
+</nav>
+
+<!-- Filter selection section -->
+<div class="select-div">
+    <div class="select-container">
+        <select id="Stagione">
+            <option value="" selected>All Seasons</option>
+            <!-- Options will be generated here -->
+        </select>
+
+        <select id="Campionato">
+            <option value="" selected>All Championships</option>
+            <!-- Options will be generated here -->
+        </select>
+
+        <select id="Competizione">
+            <option value="" selected>All Competitions</option>
+            <!-- Options will be generated here -->
+        </select>
+
+        <input type="date" id="data" value="">
+
+        <button type="button" id="queryJoin">Search</button>
+    </div>
+</div>
+
+<!-- Match container section -->
+<div class="matchContainer">
+    <div class="columns" id="result">
+        <!-- Match results will be generated here -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer-container">
+</footer>
+
+</body>
+</html>

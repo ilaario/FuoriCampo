@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character set, compatibility, and viewport settings -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Include external libraries and stylesheets -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/navbar.css" />
+    <link rel="stylesheet" href="stylesheets/index.css" />
+    <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+
+    <!-- Include JavaScript files -->
+    <script src="javascripts/navbar_footer.js" defer></script>
+    <script src="./javascripts/index.js"></script>
+    <script src="./javascripts/slide.js" defer></script>
+
+    <title>FUORICampo - Home</title>
+</head>
+
+<body onload="init(); loadNav();  loadFooter()">
+<!-- Navigation bar -->
+<nav class="nav" id="navbar-container">
+    <!-- Contenuto della navbar -->
+</nav>
+
+<!-- Wrapper per il contenuto principale -->
+<div class="content-wrapper">
+    <div class="main-content">
+        <!-- Sezione delle news -->
+        <div class="news-section">
+            <h2 class="newsContainerTitle">NEWS</h2>
+        </div>
+
+        <!-- Sezione delle partite -->
+        <div class="latest-matches-section">
+            <h2 class="lsagContainerTitle">LASTEST SERIE A MATCHES</h2>
+            <div class="lastGamesContainer">
+                <!-- Container for last games managed by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content-2">
+        <!-- Sezione dei giocatori -->
+        <div class="players-section">
+            <h2 class="playersContainerTitle">TOP PLAYERS</h2>
+            <div class="playersContainer">
+                <!-- Container for top players managed by JavaScript -->
+            </div>
+        </div>
+
+
+        <!-- Sezione delle competizioni -->
+        <div class="topteams-section">
+            <h2 class="topteamsContainerTitle">TOP TEAMS</h2>
+            <div class="topteamsContainer">
+                <!-- Container for last games managed by JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<footer id="footer-container">
+</footer>
+</body>
+</html>

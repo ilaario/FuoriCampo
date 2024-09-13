@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include external JavaScript files -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- Include external stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link rel="stylesheet" href="stylesheets/teams.css">
+    <link rel="stylesheet" href="stylesheets/navbar.css">
+    <link rel="stylesheet" href="stylesheets/footer.css">
+
+    <!-- Include JavaScript files with defer attribute -->
+    <script src="./javascripts/navbar_footer.js" defer></script>
+    <script src="javascripts/teams.js"></script>
+
+    <!-- Meta tags for character set and title -->
+    <meta charset="UTF-8">
+    <title>FUORICampo - Teams</title>
+</head>
+<body onload="init(); loadNav(); loadFooter()">
+
+<!-- Navigation bar -->
+<nav class="nav" id="navbar-container">
+</nav>
+
+<!-- Search bar for teams -->
+<div class="squadSearch">
+    <label for="searchBar"></label><input type="text" id="searchBar" placeholder="Search team...">
+</div>
+
+<!-- Container where teams will be displayed -->
+<div class="resultContainer">
+    <div class="squadContainer">
+        <!-- Teams will be rendered here -->
+    </div>
+    <div class="containerPrevNext">
+        <button type="button" id="prevButton"><</button>
+        <div class="letterDiv" id = "currentLetterDisplay"></div>
+        <button type="button" id="nextButton">></button>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer-container">
+</footer>
+</body>
+</html>
